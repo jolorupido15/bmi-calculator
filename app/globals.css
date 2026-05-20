@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
