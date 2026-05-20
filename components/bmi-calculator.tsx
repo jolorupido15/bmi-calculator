@@ -68,7 +68,8 @@ export function BMICalculator() {
   }, [result]);
 
   function onSubmit(values: FormValues) {
-    let res: BMIResult;
+  console.log("submitted values:", values);
+  let res: BMIResult;
     if (values.unit === "metric") {
       const weightKg = parseFloat(values.weightKg!);
       const heightM = parseFloat(values.heightCm!) / 100;
@@ -127,7 +128,7 @@ export function BMICalculator() {
                   <FormItem>
                     <FormLabel className="font-medium">Weight (kg)</FormLabel>
                     <FormControl>
-                      <Input type="number" placeholder="e.g. 70" className="rounded-xl h-12" {...field} />
+                      <Input type="number" placeholder="e.g. 70" step="0.1" className="rounded-xl h-12" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -136,7 +137,7 @@ export function BMICalculator() {
                   <FormItem>
                     <FormLabel className="font-medium">Height (cm)</FormLabel>
                     <FormControl>
-                      <Input type="number" placeholder="e.g. 175" className="rounded-xl h-12" {...field} />
+                     <Input type="number" placeholder="e.g. 175" step="0.1" className="rounded-xl h-12" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
