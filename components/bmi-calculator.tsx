@@ -50,14 +50,14 @@ export function BMICalculator() {
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
-  unit: "metric",
-  weightKg: "",
-  heightCm: "",
-  weightLbs: "",
-  heightFt: "",
-  heightIn: "",
-},
-});
+      unit: "metric",
+      weightKg: "",
+      heightCm: "",
+      weightLbs: "",
+      heightFt: "",
+      heightIn: "",
+    },
+  });
 
   useEffect(() => {
     if (result) {
@@ -68,8 +68,7 @@ export function BMICalculator() {
   }, [result]);
 
   function onSubmit(values: FormValues) {
-  console.log("submitted values:", values);
-  let res: BMIResult;
+    let res: BMIResult;
     if (values.unit === "metric") {
       const weightKg = parseFloat(values.weightKg!);
       const heightM = parseFloat(values.heightCm!) / 100;
@@ -115,65 +114,64 @@ export function BMICalculator() {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <Tabs defaultValue="metric" onValueChange={handleUnitChange} className="w-full">
               <TabsList className="w-full rounded-full bg-muted p-1">
-  <TabsTrigger value="metric" className="rounded-full flex-1 data-[state=active]:bg-white data-[state=active]:text-black data-[state=inactive]:text-muted-foreground">
-    Metric (kg/cm)
-  </TabsTrigger>
-  <TabsTrigger value="imperial" className="rounded-full flex-1 data-[state=active]:bg-white data-[state=active]:text-black data-[state=inactive]:text-muted-foreground">
-    Imperial (lb/ft)
-  </TabsTrigger>
-</TabsList>
+                <TabsTrigger value="metric" className="rounded-full flex-1 data-[state=active]:bg-white data-[state=active]:text-black data-[state=inactive]:text-muted-foreground">
+                  Metric (kg/cm)
+                </TabsTrigger>
+                <TabsTrigger value="imperial" className="rounded-full flex-1 data-[state=active]:bg-white data-[state=active]:text-black data-[state=inactive]:text-muted-foreground">
+                  Imperial (lb/ft)
+                </TabsTrigger>
+              </TabsList>
 
               <TabsContent value="metric" className="space-y-4 mt-4">
-               <FormField control={form.control as any} name="weightKg" render={({ field }) => (
-  <FormItem>
-    <FormLabel className="font-medium">Weight (kg)</FormLabel>
-    <FormControl>
-      <Input type="number" placeholder="e.g. 70" step="0.1" className="rounded-xl h-12" aria-invalid={!!form.formState.errors.weightKg} {...field} />
-    </FormControl>
-    <FormMessage />
-  </FormItem>
-)} />
-                <FormField control={form.control} name="heightCm" render={({ field }) => (
-                 <FormField control={form.control as any} name="heightCm" render={({ field }) => (
-  <FormItem>
-    <FormLabel className="font-medium">Height (cm)</FormLabel>
-    <FormControl>
-      <Input type="number" placeholder="e.g. 175" step="0.1" className="rounded-xl h-12" aria-invalid={!!form.formState.errors.heightCm} {...field} />
-    </FormControl>
-    <FormMessage />
-  </FormItem>
-)} />
+                <FormField control={form.control as any} name="weightKg" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="font-medium">Weight (kg)</FormLabel>
+                    <FormControl>
+                      <Input type="number" placeholder="e.g. 70" step="0.1" className="rounded-xl h-12" aria-invalid={!!form.formState.errors.weightKg} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
+                <FormField control={form.control as any} name="heightCm" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="font-medium">Height (cm)</FormLabel>
+                    <FormControl>
+                      <Input type="number" placeholder="e.g. 175" step="0.1" className="rounded-xl h-12" aria-invalid={!!form.formState.errors.heightCm} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
               </TabsContent>
 
               <TabsContent value="imperial" className="space-y-4 mt-4">
                 <FormField control={form.control as any} name="weightLbs" render={({ field }) => (
-  <FormItem>
-    <FormLabel className="font-medium">Weight (lbs)</FormLabel>
-    <FormControl>
-      <Input type="number" placeholder="e.g. 154" className="rounded-xl h-12" aria-invalid={!!form.formState.errors.weightLbs} {...field} />
-    </FormControl>
-    <FormMessage />
-  </FormItem>
-)} />
+                  <FormItem>
+                    <FormLabel className="font-medium">Weight (lbs)</FormLabel>
+                    <FormControl>
+                      <Input type="number" placeholder="e.g. 154" className="rounded-xl h-12" aria-invalid={!!form.formState.errors.weightLbs} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
                 <div className="grid grid-cols-2 gap-3">
-                 <FormField control={form.control as any} name="heightFt" render={({ field }) => (
-  <FormItem>
-    <FormLabel className="font-medium">Feet</FormLabel>
-    <FormControl>
-      <Input type="number" placeholder="e.g. 5" className="rounded-xl h-12" aria-invalid={!!form.formState.errors.heightFt} {...field} />
-    </FormControl>
-    <FormMessage />
-  </FormItem>
-)} />
-                 <FormField control={form.control as any} name="heightFt" render={({ field }) => (
-  <FormItem>
-    <FormLabel className="font-medium">Feet</FormLabel>
-    <FormControl>
-      <Input type="number" placeholder="e.g. 5" className="rounded-xl h-12" aria-invalid={!!form.formState.errors.heightFt} {...field} />
-    </FormControl>
-    <FormMessage />
-  </FormItem>
-)} />
+                  <FormField control={form.control as any} name="heightFt" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-medium">Feet</FormLabel>
+                      <FormControl>
+                        <Input type="number" placeholder="e.g. 5" className="rounded-xl h-12" aria-invalid={!!form.formState.errors.heightFt} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+                  <FormField control={form.control as any} name="heightIn" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-medium">Inches</FormLabel>
+                      <FormControl>
+                        <Input type="number" placeholder="e.g. 9" className="rounded-xl h-12" aria-invalid={!!form.formState.errors.heightIn} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
                 </div>
               </TabsContent>
             </Tabs>
