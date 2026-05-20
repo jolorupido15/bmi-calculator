@@ -59,10 +59,11 @@ export function BMICalculator() {
     },
   });
 
-  useEffect(() => {
+useEffect(() => {
     if (result) {
+      console.log("gauge percent:", result.gaugePercent);
       setGaugePos(0);
-      const t = setTimeout(() => setGaugePos(result.gaugePercent), 50);
+      const t = setTimeout(() => setGaugePos(result.gaugePercent), 100);
       return () => clearTimeout(t);
     }
   }, [result]);
@@ -177,40 +178,39 @@ export function BMICalculator() {
             </Tabs>
 
             <div className="flex gap-3 pt-1">
-              <Button type="submit" className="flex-1 h-12 rounded-xl bg-teal-500 hover:bg-teal-600 text-white font-semibold text-base">
-                Calculate BMI
-              </Button>
-              <Button type="button" variant="outline" className="h-12 rounded-xl px-5" onClick={handleReset}>
-                Reset
-              </Button>
-            </div>
+  <Button type="submit" className="flex-1 h-12 rounded-xl bg-teal-500 hover:bg-teal-600 text-white font-semibold text-base">
+    Calculate BMI
+  </Button>
+</div>
           </form>
         </Form>
 
         {result && cat && (
-          <div className="animate-in slide-in-from-bottom-4 duration-300 space-y-4">
-            <Separator />
-            <div className="text-center space-y-1">
-              <p className="text-sm text-muted-foreground">Your BMI</p>
-              <p className="text-5xl font-mono font-bold">{result.bmi}</p>
-              <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${cat.text}`}>
-                {cat.label}
-              </span>
-            </div>
+  <div className="animate-in slide-in-from-bottom-4 duration-300 space-y-4">
+    <Separator />
+    <div className="space-y-1">
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Your BMI</p>
+        <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold border ${cat.text}`}>
+          {cat.label}
+        </span>
+      </div>
+      <p className="text-6xl font-mono font-bold">{result.bmi}</p>
+    </div>
 
             <div className="space-y-2">
-              <div className="relative h-3 rounded-full overflow-hidden flex">
-                <div className="flex-1 bg-blue-500" />
-                <div className="flex-1 bg-green-500" />
-                <div className="flex-1 bg-amber-500" />
-                <div className="flex-1 bg-red-500" />
-              </div>
               <div className="relative h-4">
-                <div
-                  className="absolute w-3 h-3 bg-foreground rounded-full top-0 -translate-x-1/2 transition-all duration-1000 ease-out"
-                  style={{ left: `${gaugePos}%` }}
-                />
-              </div>
+  <div className="absolute inset-0 rounded-full overflow-hidden flex">
+    <div className="flex-1 bg-blue-500" />
+    <div className="flex-1 bg-green-500" />
+    <div className="flex-1 bg-amber-500" />
+    <div className="flex-1 bg-red-500" />
+  </div>
+  <div
+    className="absolute w-4 h-4 bg-white border-2 border-gray-800 rounded-full -translate-x-1/2 -translate-y-1/2 shadow-md top-1/2"
+    style={{ left: `${gaugePos}%`, transition: "left 1s ease-out" }}
+  />
+</div>
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>15</span>
                 <span>18.5</span>
@@ -220,7 +220,18 @@ export function BMICalculator() {
               </div>
             </div>
 
-            <p className="text-sm text-center text-muted-foreground">{result.message}</p>
+           <p className="text-sm text-center text-muted-foreground">{result.message}</p>
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full h-12 rounded-xl font-semibold"
+              onClick={handleReset}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Reset Calculator
+            </Button>
           </div>
         )}
 
